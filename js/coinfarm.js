@@ -16,6 +16,7 @@ $(function() {
 	function displayTransactionTable() {
 		var transactions = [];
 		$.each(localStorage, function(key, value) {
+			if (key.substring(0, 9) != 'coinfarm-') return;
 			var transaction = $.parseJSON(value);
 			transaction.unixtime = parseInt(key, 10);
 			transaction.time = unixtime2html(transaction.unixtime);
@@ -40,6 +41,7 @@ $(function() {
 	function displayBigNumber() {
 		var balance = 0;
 		$.each(localStorage, function(key, value) {
+			if (key.substring(0, 9) != 'coinfarm-') return;
 			balance += $.parseJSON(value).amount;
 		});
 
@@ -56,7 +58,7 @@ $(function() {
 
 	$('#buydrinkbutton').click(function() {
 		var currentTime = new Date().getTime();
-		localStorage[currentTime.toString()] = JSON.stringify({
+		localStorage['coinfarm-'+currentTime.toString()] = JSON.stringify({
 			account:'drinks',
 			amount:-1.5,
 			subject: 'Drink'
@@ -70,7 +72,7 @@ $(function() {
 		var currentTime = new Date().getTime();
 		var amount = parseInt($('#fillupdrinkmodalamount').val(), 10);
 		if (!amount) return;
-		localStorage[currentTime.toString()] = JSON.stringify({
+		localStorage['coinfarm-'+currentTime.toString()] = JSON.stringify({
 			account: 'drinks',
 			amount: amount,
 			subject: 'Charge'
@@ -81,9 +83,5 @@ $(function() {
 		displayBigNumber();
 	});
 
-
-//	console.log(localStorage);
-
-
-
 });
+
