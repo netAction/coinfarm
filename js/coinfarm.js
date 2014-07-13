@@ -18,7 +18,7 @@ $(function() {
 		$.each(localStorage, function(key, value) {
 			if (key.substring(0, 9) != 'coinfarm-') return;
 			var transaction = $.parseJSON(value);
-			transaction.unixtime = parseInt(key, 10);
+			transaction.unixtime = parseInt(key.slice(9), 10);
 			transaction.time = unixtime2html(transaction.unixtime);
 
 			transaction.positive = (transaction.amount>0);
