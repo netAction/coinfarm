@@ -54,26 +54,97 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5">
 
-					<!-- Main jumbotron for a primary marketing message or call to action -->
-					<div class="jumbotron">
-						<div class="bignumber"></div>
-						<div class="bignumberdescription">for drinks left</div>
-						<p>
-							<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#buydrinkmodal">
-								Buy a drink for 1,50€
-							</button>
-						</p>
+				<div class="col-md-3 onlyvisible-without-money">
+					<p><span class="glyphicon glyphicon-usd"></span> <strong>Use your device as your Thinkfarm wallet.</strong> You can charge it in cash.</p>
+					<p><span class="glyphicon glyphicon-sort"></span> There are <strong>two separate accounts</strong> for coffee and cold drinks like mate, cola and beer. Simply click the buttons and follow the instructions.</p>
+				</div>
+
+
+				<div id="fillaccountsposition-without-money">
+					<div class="col-md-5">
+						<div class="jumbotron">
+							<div class="row">
+								<div class="col-xs-6">
+									<img src="images/money-bag.png" style="width:60%;" />
+									<p>
+										<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#fillupdrinkmodal">
+											<span class="glyphicon glyphicon-log-in"></span>
+											coffee
+										</button>
+									</p>
+								</div>
+
+								<div class="col-xs-6">
+									<img src="images/money-bag.png" style="width:60%;" />
+									<p>
+										<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#buydrinkmodal">
+											<span class="glyphicon glyphicon-log-in"></span>
+											drinks
+										</button>
+									</p>
+								</div>
+							</div><!-- row -->
+						</div><!-- jumbo -->
 					</div>
 				</div>
 
-				<div class="col-md-3">
-					<p><span class="glyphicon glyphicon-usd"></span> <a href="#" data-toggle="modal" data-target="#fillupdrinkmodal">Fill up your account</a> at the Quartier&shy;meister's desks.</p>
-					<p><span class="glyphicon glyphicon-cutlery"></span> Buy something in the Thinkfarm.</p>
-					<p><span class="glyphicon glyphicon-bookmark"></span> Bookmark this page for easy access later on the fridge.</p>
-					<p><span class="glyphicon glyphicon-compressed"></span> Look <a href="https://github.com/">under the hood</a>.</p>
+
+				<div class="col-md-3 onlyvisible-without-money">
+					<p><span class="glyphicon glyphicon-cutlery"></span> After some money is on your account, <strong>you can buy coffee or cold drinks</strong>, depending which account is filled.</p>
+					<p><span class="glyphicon glyphicon-bookmark"></span> <strong>Bookmark this page</strong> for easy access later in the kitchen or even put an icon on your home screen.</p>
 				</div>
+
+
+				<div class="col-md-5">
+					<div class="jumbotron">
+						<div class="row">
+							<div class="col-xs-3">
+								<img src="images/coffee.png" />
+							</div>
+							<div class="col-xs-9">
+								<div class="bignumber"></div>
+								<div class="bignumberdescription">coffee money left</div>
+								<p>
+									<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#buydrinkmodal">
+										<span class="glyphicon glyphicon-shopping-cart"></span>
+										coffee for 1,50€
+									</button>
+								</p>
+							</div>
+						</div><!-- row -->
+					</div><!-- jumbo -->
+				</div>
+
+
+				<div class="col-md-5">
+					<div class="jumbotron">
+						<div class="row">
+							<div class="col-xs-3">
+								<img src="images/beer.png" />
+							</div>
+							<div class="col-xs-9">
+								<div class="bignumber"></div>
+								<div class="bignumberdescription">for drinks left</div>
+								<p>
+									<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#buydrinkmodal">
+										<span class="glyphicon glyphicon-shopping-cart"></span>
+										drink for 1,50€
+									</button>
+								</p>
+							</div>
+						</div><!-- row -->
+					</div><!-- jumbo -->
+				</div>
+
+				<div id="fillaccountsposition-with-money">
+				</div>
+
+				<div class="col-md-3">
+					<p class="onlyvisible-without-money"><span class="glyphicon glyphicon-globe"></span> There is no centralized database. The balance is kept only on your device (and at NSA).</p>
+					<p><span class="glyphicon glyphicon-compressed"></span> Look <a href="https://github.com/">under the hood</a> at the sources on Github.</p>
+				</div>
+
 
 				<div class="col-md-4" id="transactiontable-wrapper">
 				</div>
@@ -133,7 +204,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{{#each transactions}}<tr{{#if positive}} class="success"{{/if}}>
+					{{#each transactions}}<tr{{#if positive}} class="active"{{/if}}>
 						<td>{{{time}}}</td>
 						<td>{{subject}}</td>
 						<td class="text-right">{{amountstring}}</td>

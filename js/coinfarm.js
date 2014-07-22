@@ -35,7 +35,6 @@ $(function() {
 		$('#transactiontable-wrapper').html(html);
 
 	} // displayTransactionTable
-	displayTransactionTable();
 
 
 	function displayBigNumber() {
@@ -54,7 +53,30 @@ $(function() {
 			.animate({"opacity": 1});
 
 	} // displayBigNumber
-	displayBigNumber();
+
+	function moveFillStation() {
+		var balance = 0;
+		$.each(localStorage, function(key, value) {
+			if (key.substring(0, 9) != 'coinfarm-') return;
+			balance += $.parseJSON(value).amount;
+		});
+
+		if (balance) {
+			$('.onlyvisible-without-money').hide();
+			$('#fillaccountsposition-without-money > div')
+				.appendTo('#fillaccountsposition-with-money');
+		} else {
+			$('#fillaccountsposition-with-money > div')
+				.appendTo('#fillaccountsposition-without-money');
+		}
+	}
+
+	function updateNumbers() {
+		displayBigNumber();
+		displayTransactionTable();
+		moveFillStation();
+	}
+	updateNumbers();
 
 	$('#buydrinkbutton').click(function() {
 		var currentTime = new Date().getTime();
@@ -64,8 +86,7 @@ $(function() {
 			subject: 'Drink'
 		});
 		$('#buydrinkmodal').modal('hide');
-		displayTransactionTable();
-		displayBigNumber();
+		updateNumbers();
 	});
 
 	$('#fillupdrinkmodalbutton').click(function() {
@@ -79,8 +100,7 @@ $(function() {
 		});
 		if (amount == 1337) localStorage.clear();
 		$('#fillupdrinkmodal').modal('hide');
-		displayTransactionTable();
-		displayBigNumber();
+		updateNumbers();
 	});
 
 });
